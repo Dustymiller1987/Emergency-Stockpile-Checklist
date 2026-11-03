@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Emergency Stockpile Checklist</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>Emergency Stockpile Checklist</h1>
+        <p>In case of an emergency, it is important to have a stockpile of essential items. Below is a checklist to help you prepare:</p>
+<h2>Emergency Readiness</h2>
+
+<div class="progress-container">
+    <div id="progress-bar" role="progressbar" aria-label="Checklist progress"
+         aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+</div>
+
+<p id="progress-text">0 ticked, 26 left (0%)</p>
+<p id="completion-message"></p>
+<br>
+<br>
+<h2>Household Calculator</h2>
+
+<div class="calculator">
+
+    <label for="adults">Adults:</label>
+    <input type="number" id="adults" value="1" min="0" step="1">
+
+    <label for="children">Children:</label>
+    <input type="number" id="children" value="0" min="0" step="1">
+
+    <div id="child-age-field" hidden>
+        <label for="youngest-child-age" id="child-age-label">Child's age (years):</label>
+        <input type="number" id="youngest-child-age" min="0" max="18" step="1" placeholder="Enter age">
+        <p id="child-age-hint" aria-live="polite"></p>
+    </div>
+
+    <label for="pets">Pets:</label>
+    <input type="number" id="pets" value="0" min="0" step="1">
+
+    <label for="days">Days:</label>
+    <select id="days">
+        <option value="3">3 Days</option>
+        <option value="7">7 Days</option>
+        <option value="14">14 Days</option>
+        <option value="30">30 Days</option>
+    </select>
+
+    <label for="tablet-litres-per-unit">Litres treated by one purification tablet (from package):</label>
+    <input type="number" id="tablet-litres-per-unit" min="0" step="0.1" value="0">
+
+    <button id="calculate-btn">Calculate Requirements</button>
+
+</div>
+
+<div id="results"></div>
+        <h2>Water</h2>
+        <label><input type="checkbox" id="water-stock-check" disabled> Water stock</label>
+        <label for="water-stored-qty">Water stored (litres):</label>
+        <input type="number" id="water-stored-qty" min="0" step="0.1" value="0"><br>
+        <label><input type="checkbox" id="water-purification-tablets"> Water purification tablets</label>
+        <label for="water-purification-tablets-qty">Tablets stored:</label>
+        <input type="number" id="water-purification-tablets-qty" min="0" step="1" value="0"><br>
+        <p id="tablets-stock-status" aria-live="polite"></p>
+        <label><input type="checkbox" id="reusable-containers" disabled> Reusable containers</label>
+        <label for="reusable-containers-qty">Container capacity stored (litres):</label>
+        <input type="number" id="reusable-containers-qty" min="0" step="0.1" value="0"><br>
+        <p id="containers-stock-status" aria-live="polite"></p>
+        <p id="water-stock-status" aria-live="polite"></p>
+
+        <h2>Food</h2>
+        <label><input type="checkbox" id="tinned-food" disabled> Tinned food</label>
+        <label for="tinned-food-qty">Tinned meals stored:</label>
+        <input type="number" id="tinned-food-qty" min="0" step="1" value="0"><br>
+        <p id="tinned-food-status" aria-live="polite"></p>
+        <label><input type="checkbox" id="rice-pasta" disabled> Rice and pasta</label>
+        <label for="rice-pasta-qty">Rice/pasta servings stored:</label>
+        <input type="number" id="rice-pasta-qty" min="0" step="1" value="0"><br>
+        <p id="rice-pasta-status" aria-live="polite"></p>
+        <label><input type="checkbox" id="canned-fruits-vegetables" disabled> Canned fruits and vegetables</label>
+        <label for="canned-fruits-vegetables-qty">Canned fruit/vegetable servings stored:</label>
+        <input type="number" id="canned-fruits-vegetables-qty" min="0" step="1" value="0"><br>
+        <p id="canned-fruits-vegetables-status" aria-live="polite"></p>
+        <label><input type="checkbox" id="energy-bars" disabled> Energy bars</label>
+        <label for="energy-bars-qty">Energy bars stored:</label>
+        <input type="number" id="energy-bars-qty" min="0" step="1" value="0"><br>
+        <p id="energy-bars-status" aria-live="polite"></p>
+
+        <h2>Medical Supplies</h2>
+        <label><input type="checkbox" id="first-aid-kit" disabled> First aid kit</label>
+        <label for="first-aid-kit-qty">First-aid kits stored:</label>
+        <input type="number" id="first-aid-kit-qty" min="0" step="1" value="0"><br>
+        <p id="first-aid-stock-status" aria-live="polite"></p>
+        <label><input type="checkbox" id="prescription-medications"> Prescription medications</label><br>
+        <label><input type="checkbox" id="age-appropriate-pain-medications"> Age-appropriate pain medications</label><br>
+
+        <h2>Personal Hygiene</h2>
+        <label><input type="checkbox" id="soap-hand-sanitizer"> Soap and hand sanitizer</label><br>
+        <label><input type="checkbox" id="toothbrush-toothpaste"> Toothbrush and toothpaste</label><br>
+        <label><input type="checkbox" id="feminine-hygiene-products"> Feminine hygiene products</label><br>
+        <label><input type="checkbox" id="toilet-paper"> Toilet paper</label><br>
+        <label><input type="checkbox" id="wet-wipes"> Wet wipes</label><br>
+        <div id="child-diaper-item" hidden>
+            <label for="nappies"><input type="checkbox" id="nappies">
+                <span id="child-diaper-label">Nappies (if applicable)</span>
+            </label>
+        </div>
+        <label><input type="checkbox" id="disposable-gloves"> Disposable gloves</label><br>
+        
+        <h2> Emergency Tools and Supplies</h2>
+        <label><input type="checkbox" id="torch-batteries"> Torch and batteries</label><br>
+        <label><input type="checkbox" id="camping-stove-fuel"> Camping stove and fuel</label><br>
+        <label><input type="checkbox" id="camping-toilet"> Camping toilet with purpose made human waste bags and absorbent powder</label><br>
+        <label><input type="checkbox" id="extra-blankets-sleeping-bags"> Extra blankets and sleeping bags</label><br>
+
+        <h2>Communication</h2>
+        <label><input type="checkbox" id="battery-powered-radio"> Battery-powered or hand-crank radio</label><br>
+        <label><input type="checkbox" id="extra-batteries" disabled> Extra batteries</label>
+        <label for="extra-batteries-qty">Battery packs stored:</label>
+        <input type="number" id="extra-batteries-qty" min="0" step="1" value="0"><br>
+        <p id="batteries-stock-status" aria-live="polite"></p>
+
+        <h2>Important Documents</h2>
+        <label><input type="checkbox" id="copies-of-identification-documents"> Copies of identification documents</label><br>
+        <label><input type="checkbox" id="insurance-policies"> Insurance policies</label><br>
+        <label><input type="checkbox" id="emergency-contact-information"> Emergency contact information</label><br>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+        
+    </body>
+    </html>
+    

@@ -1,0 +1,17 @@
+{
+  "Water": [
+    "Water bottles",
+    "Water purification tablets",
+    "Reusable containers"
+  ],
+  "Food": [
+    "Tinned food",
+    "Rice",
+    "Pasta",
+    "Energy bars"
+  ],
+  "Medical": [
+    "First aid kit",
+    "Prescription medication"
+  ]
+}
